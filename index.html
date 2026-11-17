@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Goodbye From Hamid</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Vazirmatn', sans-serif;
+    background: #080a0e;
+    color: #eee;
+    overflow-x: hidden;
+}
+
+:root {
+    --gold: #d8b875;
+    --gold-light: #f2dfad;
+    --muted: #999ba5;
+}
+
+canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: .65;
+}
+
+section, footer {
+    position: relative;
+    z-index: 1;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 20px;
+    background:
+    radial-gradient(ellipse at 50% 45%, #22202a 0%, #0a0b10 55%, #080a0e 100%);
+}
+
+.hero-content {
+    max-width: 750px;
+    animation: appear 2s ease;
+}
+
+.small-title {
+    color: var(--gold);
+    letter-spacing: 5px;
+    font-size: 12px;
+    direction: ltr;
+    margin-bottom: 35px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 8vw, 75px);
+    font-weight: 300;
+    line-height: 1.7;
+    color: #fff;
+}
+
+.hero h1 span {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.hero p {
+    margin-top: 25px;
+    color: #aaa;
+    font-size: 15px;
+    line-height: 2.5;
+}
+
+.gold-line {
+    width: 75px;
+    height: 1px;
+    background: var(--gold);
+    margin: 30px auto;
+    box-shadow: 0 0 15px var(--gold);
+}
+
+.main-btn {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 14px 36px;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    background: transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    transition: .4s;
+}
+
+.main-btn:hover {
+    background: var(--gold);
+    color: #111;
+    box-shadow: 0 0 30px #d8b87555;
+}
+
+.scroll-hint {
+    margin-top: 60px;
+    color: #666;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.section {
+    padding: 100px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-heading h2 {
+    color: var(--gold-light);
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    position: relative;
+    background: linear-gradient(145deg, #17191f, #0e1016);
+    border: 1px solid #ffffff10;
+    padding: 35px 25px;
+    border-radius: 8px;
+    transition: .5s;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(35px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    border-color: #d8b87577;
+    transform: translateY(-7px);
+    box-shadow: 0 15px 45px #0008;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #d8b8750b;
+    border-radius: 50%;
+    top: -45px;
+    left: -35px;
+}
+
+.number {
+    color: #766440;
+    font-size: 12px;
+    letter-spacing: 3px;
+    direction: ltr;
+    text-align: left;
+}
+
+.card h3 {
+    color: var(--gold-light);
+    font-size: 22px;
+    margin: 22px 0 5px;
+    direction: ltr;
+    text-align: right;
+}
+
+.card .role {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #777;
+    direction: ltr;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.card .message {
+    font-size: 13px;
+    color: #b6b6bd;
+    line-height: 2.6;
+}
+
+.card .heart {
+    margin-top: 25px;
+    color: #b69b67;
+    font-size: 17px;
+}
+
+.letter-section {
+    padding: 100px 20px 130px;
+    background: linear-gradient(180deg, transparent, #11131a, transparent);
+}
+
+.letter {
+    max-width: 800px;
+    margin: auto;
+    padding: 55px 40px;
+    background: linear-gradient(145deg, #171920, #101116);
+    border: 1px solid #b89c6544;
+    border-radius: 8px;
+    box-shadow: 0 20px 80px #0007;
+    text-align: center;
+}
+
+.letter-label {
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 5px;
+    direction: ltr;
+}
+
+.letter h2 {
+    color: var(--gold-light);
+    font-size: 30px;
+    font-weight: 400;
+    margin: 25px 0;
+}
+
+.letter-content {
+    display: none;
+    text-align: right;
+    animation: appear 1.5s ease;
+}
+
+.letter-content.open {
+    display: block;
+}
+
+.letter-content p {
+    color: #c1c1c7;
+    font-size: 14px;
+    line-height: 3;
+    margin-bottom: 20px;
+}
+
+.signature {
+    text-align: left;
+    margin-top: 45px;
+    color: var(--gold);
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.signature small {
+    display: block;
+    color: #777;
+    font-size: 11px;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 45px 20px;
+    border-top: 1px solid #ffffff10;
+}
+
+footer p {
+    color: #777;
+    font-size: 12px;
+    line-height: 2.5;
+}
+
+footer span {
+    color: var(--gold);
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width:600px) {
+    .section {
+        padding: 75px 17px;
+    }
+
+    .letter {
+        padding: 40px 22px;
+    }
+
+    .card {
+        padding: 30px 22px;
+    }
+
+    .letter h2 {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<!-- HERO -->
+
+<section class="hero">
+<div class="hero-content">
+
+<div class="small-title">A GOODBYE LETTER · 2026</div>
+
+<h1>
+بعضی آدم‌ها<br>
+<span>فراموش نمی‌شوند...</span>
+</h1>
+
+<div class="gold-line"></div>
+
+<p>
+برای آدم‌هایی که بخشی از روزهای من شدند؛<br>
+برای لبخندها، شوخی‌ها، خاطره‌ها و تمام لحظاتی که کنار هم ساختیم.
+</p>
+
+<button class="main-btn"
+onclick="document.getElementById('friends').scrollIntoView({behavior:'smooth'})">
+خاطرات رو مرور کنیم
+</button>
+
+<div class="scroll-hint">SCROLL TO REMEMBER ↓</div>
+
+</div>
+</section>
+
+
+<!-- THANK YOU -->
+
+<section class="section" id="friends">
+
+<div class="section-heading">
+<h2>برای تک‌تک شما...</h2>
+<div class="gold-line"></div>
+<p>هرکدومتون به شکلی قشنگ، بخشی از خاطرات من شدید.</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="number">01 / THANK YOU</div>
+<h3>Ms. Asgari</h3>
+<div class="role">OUR DEAR MANAGER</div>
+<p class="message">
+خانم عسگری عزیز، ازتون بابت تمام مهربونی‌هاتون ممنونم.
+ممنون که همیشه هوامو داشتید و با حرف‌های قشنگتون بهم انرژی می‌دادید.
+وجود آدمی مثل شما توی محیط کار واقعاً ارزشمنده.
+هیچ‌وقت مهربونی‌هاتون رو فراموش نمی‌کنم.
+</p>
+<div class="heart">With Respect ♡</div>
+</div>
+
+
+<div class="card">
+<div class="number">02 / THANK YOU</div>
+<h3>Mohammad</h3>
+<div class="role">THE SMILING GUY</div>
+<p class="message">
+محمد جان، با اون ظاهر همیشه خندون و انرژی فوق‌العاده‌ات،
+بارها باعث شدی لبخند روی لبم بیاد.
+ممنون بابت تمام لحظات خوب و انرژی مثبتی که بهم دادی.
+امیدوارم همیشه همین‌قدر شاد و پرانرژی بمونی.
+</p>
+<div class="heart">Keep Smiling ♡</div>
+</div>
+
+
+<div class="card">
+<div class="number">03 / THANK YOU</div>
+<h3>Ms. Abdi</h3>
+<div class="role">A KIND SOUL</div>
+<p class="message">
+خانم عبدی عزیز، شاید مدت آشنایی من با شما زیاد نبود،
+اما توی همین مدت کوتاه مهربونی و اخلاق خوبتون رو دیدم.
+از آشنایی با شما خوشحالم و براتون بهترین‌ها رو آرزو می‌کنم.
+</p>
+<div class="heart">Stay Beautiful ♡</div>
+</div>
+
+
+<div class="card">
+<div class="number">04 / THANK YOU</div>
+<h3>Ms. Arabkhani</h3>
+<div class="role">OUR LOVELY ACCOUNTANT</div>
+<p class="message">
+خانم عرب‌خوانی عزیز، حسابدار دوست‌داشتنی ما!
+با اینکه کلی با هم شوخی و جنگ داشتیم،
+اما همیشه دوست‌داشتنی بودید.
+از تمام خنده‌ها و کل‌کل‌هامون خاطرات قشنگی دارم.
+امیدوارم همیشه دلتون شاد باشه.
+</p>
+<div class="heart">Love & Laughter ♡</div>
+</div>
+
+
+<div class="card">
+<div class="number">05 / THANK YOU</div>
+<h3>Ms. Gholizadeh</h3>
+<div class="role">MY LITTLE RIVAL</div>
+<p class="message">
+خانم قلی‌زاده عزیز، با اینکه همیشه مثل موش و گربه
+با هم دعوا می‌کردیم، اما می‌دونم چقدر مهربونید.
+اگه با حرف‌هام ناراحتتون کردم، از ته دلم معذرت می‌خوام.
+امیدوارم منو به خاطر تمام شوخی‌هام ببخشید.
+</p>
+<div class="heart">No More Fights ♡</div>
+</div>
+
+
+<div class="card">
+<div class="number">06 / THANK YOU</div>
+<h3>Majid</h3>
+<div class="role">MY GAMER FRIEND</div>
+<p class="message">
+مجید جان، رفیق گیمر و مهربون من!
+امیدوارم خیلی زود یه PC خفن و درست‌وحسابی بگیری
+و باهاش بهترین بازی‌ها رو تجربه کنی.
+امیدوارم همیشه موفق باشی و رفاقتمون توی خاطره‌هام بمونه.
+</p>
+<div class="heart">Game On ♡</div>
+</div>
+
+
+<div class="card">
+<div class="number">07 / THANK YOU</div>
+<h3>Mr. Ahmad</h3>
+<div class="role">THE BEST BOSS</div>
+<p class="message">
+آقا احمد عزیز، نمی‌دونم چطور ازتون تشکر کنم.
+من بهترین دوران کاری‌ام رو کنار شما گذروندم.
+واقعاً به خودم افتخار می‌کنم که فرصت همکاری با
+رئیسی مثل شما رو داشتم.
+ممنون بابت تمام خوبی‌ها، حمایت‌ها و خاطراتی که ساختید.
+امیدوارم همیشه موفق و سربلند باشید.
+</p>
+<div class="heart">Forever Respect ♡</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- FINAL LETTER -->
+
+<section class="letter-section">
+
+<div class="section-heading">
+<h2>و اما حرف آخر...</h2>
+<div class="gold-line"></div>
+<p>حرف‌هایی که شاید گفتنش رو هیچ‌وقت فرصت نکردم.</p>
+</div>
+
+<div class="letter">
+
+<div class="letter-label">ONE LAST MESSAGE</div>
+
+<h2>قبل از رفتنم...</h2>
+
+<div class="gold-line"></div>
+
+<button class="main-btn" id="openLetter" onclick="openMessage()">
+نامه خداحافظی رو باز کن
+</button>
+
+<div class="letter-content" id="letterContent">
+
+<p>
+سلام...
+</p>
+
+<p>
+الان که این پیام رو می‌خونید، من دیگه بینتون نیستم.
+رفتم، اما راستش رو بخواید دلم خیلی دوست داشت بمونه.
+</p>
+
+<p>
+شاید دلیل رفتنم این بود که این کار اون چیزی نبود که
+با فکر و علایق من هماهنگ باشه.
+اما این موضوع هیچ‌وقت از ارزش روزهایی که کنار شما بودم کم نمی‌کنه.
+</p>
+
+<p>
+از تک‌تک شما بابت رفتارهای بدم، کوتاهی‌هام در کار
+و هر لحظه‌ای که باعث ناراحتی‌تون شدم، صمیمانه معذرت می‌خوام.
+اگه جایی حرفی زدم که دلتون رو شکستم،
+ازتون خواهش می‌کنم منو حلال کنید.
+</p>
+
+<p>
+شاید همیشه بهترین همکار نبودم،
+شاید گاهی کم گذاشتم،
+اما بدونید که تک‌تک شما برای من ارزشمند بودید.
+</p>
+
+<p>
+شما جزو بهترین همکارانی بودید که می‌تونستم داشته باشم.
+از خنده‌ها، شوخی‌ها، کل‌کل‌ها و حتی روزهای سختی که
+کنار هم گذروندیم، خاطراتی دارم که با خودم می‌برم.
+</p>
+
+<p>
+ازتون می‌خوام از این به بعد هم بدرخشید،
+موفق باشید، خوب بفروشید و همیشه دلتون خوش باشه.
+امیدوارم هرکدومتون به آرزوهایی که توی دل دارید برسید.
+</p>
+
+<p>
+شاید دیگه هر روز نبینمتون،
+شاید دیگه صدای خنده‌هاتون رو از نزدیک نشنوم،
+اما مطمئن باشید فراموشتون نمی‌کنم.
+</p>
+
+<p>
+ممنون بابت تمام روزهایی که ساختید.
+ممنون که بخشی از خاطرات زندگی من شدید.
+</p>
+
+<p>
+دوستتون دارم و از صمیم قلب براتون بهترین‌ها رو می‌خوام.
+</p>
+
+<p>
+خدانگهدار رفقای خوبم...
+</p>
+
+<div class="signature">
+حمید
+<small>WITH LOVE & RESPECT · 2026</small>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<footer>
+<div class="gold-line"></div>
+<p>
+بعضی خداحافظی‌ها پایان نیستند...<br>
+فقط شروع دلتنگی برای روزهایی هستند که گذشتند.
+</p>
+<br>
+<p>Made with <span>♥</span> by Hamid</p>
+</footer>
+
+
+<script>
+
+// Letter animation
+
+function openMessage() {
+    document.getElementById('letterContent').classList.add('open');
+
+    document.getElementById('openLetter').style.display = 'none';
+
+    setTimeout(() => {
+        document.getElementById('letterContent').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }, 150);
+}
+
+
+// Card appearance
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.card').forEach(card => {
+    observer.observe(card);
+});
+
+
+// Floating stars
+
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+
+let stars = [];
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    stars = [];
+
+    for(let i = 0; i < 85; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 1.5,
+            speed: Math.random() * 0.25 + 0.05,
+            opacity: Math.random()
+        });
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    stars.forEach(star => {
+        ctx.beginPath();
+
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+
+        ctx.fillStyle = `rgba(216,184,117,${star.opacity})`;
+        ctx.fill();
+
+        star.y -= star.speed;
+
+        if(star.y < 0) {
+            star.y = canvas.height;
+            star.x = Math.random() * canvas.width;
+        }
+    });
+
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', resize);
+
+resize();
+animate();
+
+</script>
+
+</body>
+</html>
